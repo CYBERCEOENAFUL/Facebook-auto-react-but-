@@ -6,13 +6,15 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '*/30 * * * *' # প্রতি ৩০ মিনিট অন্তর চেক করবে বট সচল আছে কি না
-  workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -32,7 +34,7 @@ jobs:
 
       - name: Keep Workflow Alive
         run: |
-          git config --global user.name "enaful-bot"
-          git config --global user.email "bot@enaful.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git commit --allow-empty -m "Keep alive by Developer by ENAFUL"
           git push
