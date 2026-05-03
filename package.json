@@ -4,7 +4,7 @@
   "description": "Developer by ENAFUL",
   "main": "index.js",
   "dependencies": {
-    "facebook-chat-api": "latest",
-    "fs": "latest"
+    "fca-project-orion": "latest",
+    "fs-extra": "latest"
   }
 }
