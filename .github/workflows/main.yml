@@ -1,0 +1,38 @@
+name: Enaful Bot Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '*/30 * * * *' # প্রতি ৩০ মিনিট অন্তর চেক করবে বট সচল আছে কি না
+  workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Enaful Bot
+        run: node index.js
+        env:
+          DEVELOPER_NAME: "Developer by ENAFUL"
+
+      - name: Keep Workflow Alive
+        run: |
+          git config --global user.name "enaful-bot"
+          git config --global user.email "bot@enaful.com"
+          git commit --allow-empty -m "Keep alive by Developer by ENAFUL"
+          git push
