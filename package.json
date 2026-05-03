@@ -1,0 +1,10 @@
+{
+  "name": "enaful-auto-bot",
+  "version": "1.0.0",
+  "description": "Developer by ENAFUL",
+  "main": "index.js",
+  "dependencies": {
+    "facebook-chat-api": "latest",
+    "fs": "latest"
+  }
+}
